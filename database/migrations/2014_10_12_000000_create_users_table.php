@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('age');
+            $table->integer('age')->default(20);
             $table->string('email')->unique();
             $table->string('password');
-            $table->longText('image_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
