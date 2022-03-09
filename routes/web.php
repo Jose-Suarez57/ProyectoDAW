@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PrincipalController::class, 'index'])->name('index');
 
 Route::resource("posts", PostController::class);
+
+Route::resource("categories", CategoryController::class);
 
 Auth::routes();
 

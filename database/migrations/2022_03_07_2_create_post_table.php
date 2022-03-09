@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('blogger_id')->nullable();
+            $table->foreign('blogger_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('set null')
+                ->onUpdate('set null');
+
             $table->unsignedBigInteger('category_id')->nullable();
             $table->foreign('category_id')
                 ->references('id')
@@ -25,7 +32,7 @@ return new class extends Migration
             $table->longText('title');
             $table->longText('text');
             $table->json('tags');
-            $table->longText('image_url')->nullable();
+            $table->longText('image')->nullable();
             $table->tinyInteger('banned')->default('0');
             $table->timestamps();
         });

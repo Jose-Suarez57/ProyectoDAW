@@ -15,8 +15,11 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+                background-color: #ebebeb;
             }
         </style>
+
+
     </head>
     <body>
 
@@ -29,12 +32,11 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="{{url('/')}}" class="nav-link px-2 text-white">Inicio</a></li>
+                    <li><a href="{{url('/')}}" class="nav-link px-2 text-white">Buscar categoría</a></li>
 
                     @if(@Auth::user() !== null)
 
                         <li><a href="{{url('/posts/create')}}" class="nav-link px-2 text-white">Crear entrada</a></li>
-                        <li><a href="{{url('/listado')}}" class="nav-link px-2 text-white">Lista de préstamos</a></li>
-                        <li><a href="{{url('/sanciones')}}" class="nav-link px-2 text-white">Lista de sanciones</a></li>
 
                         @if(@Auth::user()->hasRole('admin'))
 
@@ -82,9 +84,9 @@
         </div>
     </header>
 
-    <div class="container">
+    <div style="margin-bottom: 25px" class="container">
 
-        <div style="margin-top: 25px" class="row">
+        <div style="margin-top: 25px; background-color: white" class="row">
 
             <!--
 
@@ -98,6 +100,5 @@
         </div>
 
     </div>
-
     </body>
 </html>

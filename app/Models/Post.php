@@ -12,15 +12,20 @@ class Post extends Model
     protected $table = "posts";
 
     protected $fillable = [
+        'blogger_id',
         'category_id',
         'title',
         'text',
         'tags',
-        'image_url',
+        'image',
         'banned',
     ];
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function blogger(){
+        return $this->belongsTo(User::class);
     }
 }
