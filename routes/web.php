@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentaryController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
@@ -21,6 +22,10 @@ Route::get('/', [PrincipalController::class, 'index'])->name('index');
 Route::resource("posts", PostController::class);
 
 Route::resource("categories", CategoryController::class);
+
+Route::resource("commentaries", CommentaryController::class);
+
+Route::get('/categories', [CategoryController::class, 'index']);
 
 Auth::routes();
 

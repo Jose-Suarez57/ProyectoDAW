@@ -3,25 +3,29 @@
 
 @section('content')
 
+    @if(count($posts) == 0)
+        <h2 style="text-align: center">Aún no hay posts de esta categoría</h2>
+    @endif
+
     @foreach($posts as $post)
 
-        <div style="margin-top: 15px" class="col-md-3">
+        <div style="margin-top: 15px" class="col-md-4">
 
             <a style="color: black; text-decoration: none" href="{{ url('/posts',$post->id)}}">
 
                 <div style="box-shadow: 0px 4px 6px #ababab; border-radius: 4px">
 
-                    <img style="border-radius: 4px 4px 0px 0px" width="100%" height="250px" src="{{$post->image}}" alt="">
+                    <img style="border-radius: 4px 4px 0px 0px" width="100%" src="{{$post->image}}" alt="">
 
                     <div style="padding: 10px">
 
                         <h3 style="text-align: center; ">{{$post->title}}</h3>
 
-                        <br>
+                        <br><br>
 
-                        <h6>Categoría: {{$post->category->name}}</h6>
+                        <h5>Categoría: {{$post->category->name}}</h5>
 
-                        <br>
+                        <br><br>
 
                         <div style="display: flex">
                             Tags:
@@ -45,6 +49,7 @@
 
             </a>
 
+            <br><br>
 
         </div>
 
@@ -52,4 +57,3 @@
 
     {{ $posts->links() }}
 @stop
-

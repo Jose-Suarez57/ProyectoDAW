@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Commentary;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,7 +43,7 @@ class PostController extends Controller
         $request->validate([
             'category_id' => 'numeric|min:1|max:5',
             'title' => 'required|min:3|max:100',
-            'text' => 'required|min:3|max:1000',
+            'text' => 'required|min:3|max:2000',
             'image' => 'image|2048',
             'tags' => 'required',
             'image' => 'image|max:1000',
@@ -73,7 +74,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
+        $commentaries = Commentary::where('post_id', '=', $post->id)->paginate(4);
+
+        return view('posts.show', compact('post', 'commentaries'));
     }
 
     /**
