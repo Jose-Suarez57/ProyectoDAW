@@ -5,13 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Blog I.E.S. El Rincón</title>
-        <link rel="icon" href="icono.png">
 
         <!-- Fonts -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
+        <!--Icons-->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--Script-->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -26,7 +29,7 @@
 
 
     </head>
-    <body>
+    <body class="d-flex flex-column min-vh-100">
 
     <header class="p-3">
         <div class="container">
@@ -63,7 +66,8 @@
 
                             @endif
 
-                            <li><a class="dropdown-item" href="/categories/6">Videojuegos</a></li>
+                            <li><a class="dropdown-item" href="/categories/6">Deportes</a></li>
+                            <li><a class="dropdown-item" href="/categories/7">Videojuegos</a></li>
                         </ul>
                     </li>
 
@@ -133,7 +137,7 @@
 
     </div>
 
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <footer style="border-top: double 3px grey !important;" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto">
         <p class="col-md-4 mb-0 text-muted">© 2021 Company, Inc</p>
 
 

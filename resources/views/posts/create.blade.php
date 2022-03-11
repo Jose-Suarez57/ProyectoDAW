@@ -34,6 +34,8 @@
                     <option value="0">-- Escoja su categoría --</option>
                     @foreach($categorias as $category)
 
+                        @if(!(($category->id == 3 || $category->id == 5) && (@Auth::user()->age < 18)))
+
                         <option value="{{$category->id}}">
 
                             {{$category->name }}
@@ -41,6 +43,8 @@
                             @if($category->adult == 1) +18 @endif
 
                         </option>
+
+                        @endif
 
                     @endforeach
                 </select>
@@ -55,7 +59,7 @@
             </div>
             <div class="mb-3">
                 <label for="tags" class="form-label">Tags (Ctrl + click en todas las tags que quieras usar):</label> <br>
-                <select multiple id="tags" name="tags[]" class="form-select">
+                <select multiple style="height: 200px" id="tags" name="tags[]" class="form-select">
                     <optgroup label="Informática">
                         <option value="Programación">Programación</option>
                         <option value="Hardware">Hardware</option>
@@ -66,31 +70,39 @@
                         <option value="Cocina vegana">Cocina vegana</option>
                         <option value="Recetas rápidas">Recetas rápidas</option>
                     </optgroup>
-                    <optgroup label="Criptomonedas">
-                        <option value="Subidas y bajadas">Subidas y bajadas</option>
-                        <option value="Bitcoin">Bitcoin</option>
-                        <option value="Ethereum">Ethereum</option>
-                    </optgroup>
+
+                    @if(@Auth::user()->age >= 18)
+
+                        <optgroup label="Criptomonedas">
+                            <option value="Subidas y bajadas">Subidas y bajadas</option>
+                            <option value="Bitcoin">Bitcoin</option>
+                            <option value="Ethereum">Ethereum</option>
+                        </optgroup>
+
+                    @endif
+
                     <optgroup label="Cine y series">
                         <option value="Terror">Terror</option>
                         <option value="Aventuras">Aventuras</option>
                         <option value="Crítica y opinión">Crítica y opinión</option>
                     </optgroup>
-                    <optgroup label="Apuestas">
-                        <option value="Futbolísticas">Futbolísticas</option>
-                        <option value="Caballos">Caballos</option>
-                        <option value="Casino">Casino</option>
-                    </optgroup>
+
+                    @if(@Auth::user()->age >= 18)
+
+                        <optgroup label="Apuestas">
+                            <option value="Futbolísticas">Futbolísticas</option>
+                            <option value="Caballos">Caballos</option>
+                            <option value="Casino">Casino</option>
+                        </optgroup>
+
+                    @endif
+
                     <optgroup label="Deportes">
                         <option value="Futbol">Futbol</option>
                         <option value="Motor">Motor</option>
                         <option value="Deportes de contacto">Deportes de contacto</option>
                     </optgroup>
                 </select>
-            </div>
-            <div class="mb-3">
-                <label for="publisher" class="form-label">Editorial:</label>
-                <input type="text" class="form-control" name="publisher" id="publisher">
             </div>
             <button type="submit" class="btn btn-primary">Crear</button>
         </form>

@@ -41,7 +41,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_id' => 'numeric|min:1|max:5',
+            'category_id' => 'numeric|min:1|max:6',
             'title' => 'required|min:3|max:100',
             'text' => 'required|min:3|max:2000',
             'image' => 'image|2048',
@@ -99,7 +99,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        echo "update";
+        exit;
     }
 
     /**
@@ -110,6 +111,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+
+        Post::find($post->id)->delete();
+
+        return redirect()->route('index')->with('success','');
     }
 }

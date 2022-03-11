@@ -62,7 +62,7 @@ class CommentaryController extends Controller
      */
     public function show(Commentary $commentary)
     {
-        //
+
     }
 
     /**
@@ -85,7 +85,7 @@ class CommentaryController extends Controller
      */
     public function update(Request $request, Commentary $commentary)
     {
-        //
+
     }
 
     /**
@@ -96,6 +96,8 @@ class CommentaryController extends Controller
      */
     public function destroy(Commentary $commentary)
     {
-        //
+        Commentary::find($commentary->id)->delete();
+
+        return redirect()->back();
     }
 }
