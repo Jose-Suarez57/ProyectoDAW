@@ -76,6 +76,8 @@
 
                         @if(@Auth::user()->hasRole('admin'))
 
+                            <li><a href="{{url('/users')}}" class="nav-link px-2 text-dark">Lista de usuarios</a></li>
+
                         @elseif(@Auth::user()->hasRole('client'))
 
 
@@ -88,12 +90,16 @@
 
                 <form action="{{url('/')}}" method="post" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                     @csrf
-                    <input type="search" name="name" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
+                    <input type="search" name="title" class="form-control form-control-dark" placeholder="Buscar..." aria-label="Search">
                 </form>
 
                 <div class="text-end">
 
                     @if(@Auth::user() !== null)
+
+                        <a href="{{ url('users/'.@Auth::user()->id.'/edit') }}">
+                            <button type="button" class="btn btn-outline-success me-2">Editar perfil</button>
+                        </a>
 
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <button type="button" class="btn btn-outline-dark me-2">Salir</button>
@@ -102,6 +108,8 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+
+                        <span>Bienvenid@ {{@Auth::user()->name}}</span>
 
                     @else
 
@@ -138,7 +146,7 @@
     </div>
 
     <footer style="border-top: double 3px grey !important;" class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top mt-auto">
-        <p class="col-md-4 mb-0 text-muted">© 2021 Company, Inc</p>
+        <p class="col-md-4 mb-0 text-muted">© 2022 Company, Inc</p>
 
 
         <ul class="nav col-md-4 justify-content-end">

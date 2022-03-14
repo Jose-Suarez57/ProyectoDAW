@@ -37,7 +37,6 @@ class PrincipalController extends Controller
 
     public function buscar(Request $request)
     {
-
         $posts = Post::where('title',"like","%" .$request->title."%")->paginate(4);
 
         return view('index',compact("posts"));

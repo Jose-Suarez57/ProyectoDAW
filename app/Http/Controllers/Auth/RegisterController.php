@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'age' => $data['age'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'banned' => 0,
         ]);
 
         $usuario->assignRole('blogger');

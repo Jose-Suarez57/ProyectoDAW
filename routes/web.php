@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentaryController;
 use App\Http\Controllers\PrincipalController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +20,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PrincipalController::class, 'index'])->name('index');
 
+Route::post('/', [PrincipalController::class, 'buscar']);
+
 Route::resource("posts", PostController::class);
 
 Route::resource("categories", CategoryController::class);
 
 Route::resource("commentaries", CommentaryController::class);
+
+Route::resource("users", UserController::class);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 

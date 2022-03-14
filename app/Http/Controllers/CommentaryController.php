@@ -73,7 +73,7 @@ class CommentaryController extends Controller
      */
     public function edit(Commentary $commentary)
     {
-        //
+        return view('commentaries.edit', compact('commentary'));
     }
 
     /**
@@ -85,6 +85,17 @@ class CommentaryController extends Controller
      */
     public function update(Request $request, Commentary $commentary)
     {
+        $request->validate([
+            'text' => 'required|min:3|max:2000',
+        ]);
+
+        $comentario = Commentary::find($commentary->id);
+
+        $comentario->text = $request->text;
+
+        $comentario->save();
+
+        return redirect()->back();
 
     }
 

@@ -13,7 +13,11 @@
 
                 <div style="box-shadow: 0px 4px 6px #ababab; border-radius: 4px; min-height: 514px; position: relative">
 
+                    @if($post->image != '/storage/')
+
                     <img style="border-radius: 4px 4px 0px 0px" width="100%" height="250px" src="{{$post->image}}" alt="">
+
+                    @endif
 
                     <div style="padding: 10px">
 

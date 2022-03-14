@@ -41,7 +41,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category_id' => 'numeric|min:1|max:6',
+            'category_id' => 'numeric|min:1|max:7',
             'title' => 'required|min:3|max:100',
             'text' => 'required|min:3|max:2000',
             'image' => 'image|2048',
@@ -49,7 +49,9 @@ class PostController extends Controller
             'image' => 'image|max:1000',
         ]);
 
-        $miImagen = $request->file('image')->store('public');
+        $miImagen = null;
+
+        if($request->file('image') !== null) $miImagen = $request->file('image')->store('public');
 
         $post = new Post;
 
@@ -87,7 +89,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categorias = Category::all();
+
+        return view('posts.edit', compact('post', 'categorias'));
     }
 
     /**
@@ -99,8 +103,34 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        echo "update";
-        exit;
+
+        $request->validate([
+            'category_id' => 'numeric|min:1|max:7',
+            'title' => 'required|min:3|max:100',
+            'text' => 'required|min:3|max:2000',
+            'image' => 'image|2048',
+            'tags' => 'required',
+            'image' => 'image|max:1000',
+        ]);
+
+        $miImagen = '';
+
+        if($request->file('image') !== null) $miImagen = $request->file('image')->store('public');
+
+        if($request->NoImage == true) $miImagen = '';
+
+        $post->category_id = $request->category_id;
+        $post->title = $request->title;
+        $post->text = $request->text;
+        $post->tags = json_encode($request->tags);
+        $post->image = Storage::url($miImagen);
+        $post->banned = 0;
+
+        $post->save();
+
+        return redirect()->route('index')->with('success','');
+
+
     }
 
     /**
@@ -111,7 +141,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-
         Post::find($post->id)->delete();
 
         return redirect()->route('index')->with('success','');
