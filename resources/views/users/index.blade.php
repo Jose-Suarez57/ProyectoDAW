@@ -39,23 +39,27 @@
 
                     <td>
 
-                        @if($user->banned == 0)
+                        @if($user->id != 1)
 
-                            <form action="{{ route('users.update', $user) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input name="banned" id="banned" type="number" hidden value="0">
-                                <button class="btn btn-danger">Banear</button>
-                            </form>
+                            @if($user->banned == 0)
 
-                        @elseif($user->banned == 1)
+                                <form action="{{ route('users.update', $user) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input name="banned" id="banned" type="number" hidden value="0">
+                                    <button class="btn btn-danger">Banear</button>
+                                </form>
 
-                            <form action="{{ route('users.update', $user) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-                                <input name="banned" id="banned" type="number" hidden value="1">
-                                <button class="btn btn-primary">Quitar baneo</button>
-                            </form>
+                            @elseif($user->banned == 1)
+
+                                <form action="{{ route('users.update', $user) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input name="banned" id="banned" type="number" hidden value="1">
+                                    <button class="btn btn-primary">Quitar baneo</button>
+                                </form>
+
+                            @endif
 
                         @endif
                     </td>

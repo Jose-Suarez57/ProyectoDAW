@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
 
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
@@ -24,6 +25,35 @@
             body {
                 font-family: 'Nunito', sans-serif;
                 background-color: #ebebeb;
+            }
+
+            .tooltipo{
+                position: relative;
+                display: inline-block;
+            }
+
+            .tooltipo .tooltip-text{
+                visibility: hidden;
+                background-color: black;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 5px 0;
+
+                /* Position the tooltip */
+                position: absolute;
+                z-index: 1;
+                top: 100%;
+                left: 50%;
+                margin-left: -60px;
+            }
+
+            .tooltipo:hover .tooltip-text {
+                visibility: visible;
+            }
+
+            .alt {
+                color: red;
             }
         </style>
 
@@ -71,16 +101,11 @@
                         </ul>
                     </li>
 
-
                 @if(@Auth::user() !== null)
 
                         @if(@Auth::user()->hasRole('admin'))
 
                             <li><a href="{{url('/users')}}" class="nav-link px-2 text-dark">Lista de usuarios</a></li>
-
-                        @elseif(@Auth::user()->hasRole('client'))
-
-
 
                         @endif
 
@@ -97,11 +122,11 @@
 
                     @if(@Auth::user() !== null)
 
-                        <a href="{{ url('users/'.@Auth::user()->id.'/edit') }}">
+                        <a href="{{ url('users/'.@Auth::user()->id.'/edit') }}" style="text-decoration: none;">
                             <button type="button" class="btn btn-outline-success me-2">Editar perfil</button>
                         </a>
 
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" style="text-decoration: none">
                             <button type="button" class="btn btn-outline-dark me-2">Salir</button>
                         </a>
 
@@ -109,15 +134,31 @@
                             @csrf
                         </form>
 
-                        <span>Bienvenid@ {{@Auth::user()->name}}</span>
+
+
+                        @if(@Auth::user()->banned == 1)
+
+                            <div class="tooltipo" style="color: red">
+
+                                <span><i class='bx bxs-lock-alt alt'></i>Bienvenid@ {{@Auth::user()->name}}</span>
+
+                                <span class="tooltip-text" >Estas baneado, ponte en contacto con el administrador para solicitar un desbaneo</span>
+
+                            </div>
+
+                        @else
+
+                            <span>Bienvenid@ {{@Auth::user()->name}}</span>
+
+                        @endif
 
                     @else
 
-                        <a href="{{ route('login') }}">
+                        <a href="{{ route('login') }}" style="text-decoration: none">
                             <button type="button" class="btn btn-outline-dark me-2">Iniciar Sesión</button>
                         </a>
 
-                        <a href="{{ route('register') }}">
+                        <a href="{{ route('register') }}" style="text-decoration: none">
                             <button type="button" class="btn btn-warning">Registrarse</button>
                         </a>
 

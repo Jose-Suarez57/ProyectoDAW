@@ -18,10 +18,8 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $categories = Category::all();
-
         $posts = Post::where('category_id',$category->id)->paginate(4);
 
-        return view('categories.index', compact('categories', 'posts'));
+        return view('categories.index', compact('category', 'posts'));
     }
 }

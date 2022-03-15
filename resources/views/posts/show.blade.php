@@ -26,7 +26,7 @@
 
                     <button type="submit" style="background: none; padding: 0px; border: none;">
 
-                        <i style="color: green" class="fa-solid fa-pen-nib fa-2xl"></i> Editar post
+                        <i style="color: green" class="fa-solid fa-pen-nib fa-xl"></i> Editar post
 
                     </button>
 
@@ -44,7 +44,7 @@
 
                     <button type="submit" style="background: none; padding: 0px; border: none;">
 
-                        <i style="color: red" class="fa-solid fa-trash-can fa-2xl"></i>
+                        <i style="color: red" class="fa-solid fa-trash-can fa-xl"></i>
 
                         <span>Eliminar post</span>
 
@@ -91,29 +91,58 @@
 
         <br>
 
-        @foreach($commentaries as $commentary)
+        <ul class="list-group list-group-flush">
+            @foreach($commentaries as $commentary)
 
-            <div style="border: 2px solid black; margin-bottom: 15px; padding: 10px">
-                <h5>{{$commentary->user->name}}</h5>
+                <li class="list-group-item" style="margin-bottom: 35px">
 
-                <div style="display: flex; justify-content: space-between">
+                    <div>
 
-                    {{$commentary->text}}
+                        <div style="">
 
-                    @if(@Auth::user() !== null && (@Auth::user()->id == $commentary->user->id || @Auth::user()->hasRole('admin')))
+                            {{$commentary->text}}
 
-                        <ul style="list-style: none; margin-right: 35px">
+                        </div>
 
-                            @if(@Auth::user() !== null && @Auth::user()->id == $commentary->user->id)
 
-                                <li style="margin-bottom: 15px">
+                    </div>
 
-                                    <form action="{{url('/commentaries/'.$commentary->id.'/edit')}}" method="GET">
+                    <div style="display: flex; justify-content: space-between; margin-top: 10px">
+
+                    <h5>{{$commentary->user->name}}</h5>
+
+                        @if(@Auth::user() !== null && (@Auth::user()->id == $commentary->user->id || @Auth::user()->hasRole('admin')))
+
+                            <ul style="list-style: none; margin-right: 35px; display: flex">
+
+                                @if(@Auth::user() !== null && @Auth::user()->id == $commentary->user->id)
+
+                                    <li style="margin-right: 25px">
+
+                                        <form action="{{url('/commentaries/'.$commentary->id.'/edit')}}" method="GET">
+                                            @csrf
+
+                                            <button type="submit" style="background: none; padding: 0px; border: none">
+
+                                                <i style="color: green" class="fa-solid fa-pen-nib"></i>
+
+                                            </button>
+
+                                        </form>
+
+                                    </li>
+
+                                @endif
+
+                                <li style="">
+
+                                    <form action="{{url('/commentaries/'.$commentary->id)}}" method="post" onsubmit="return confirm('¿Seguro que quieres eliminar este comentario?')">
                                         @csrf
+                                        @method('DELETE')
 
                                         <button type="submit" style="background: none; padding: 0px; border: none">
 
-                                            <i style="color: green" class="fa-solid fa-pen-nib fa-xl"></i>
+                                            <i style="color: red" class="fa-solid fa-trash-can"></i>
 
                                         </button>
 
@@ -121,34 +150,21 @@
 
                                 </li>
 
-                            @endif
+                            </ul>
 
-                            <li style="">
+                        @endif
 
-                                <form action="{{url('/commentaries/'.$commentary->id)}}" method="post" onsubmit="return confirm('¿Seguro que quieres eliminar este comentario?')">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" style="background: none; padding: 0px; border: none">
-
-                                        <i style="color: red" class="fa-solid fa-trash-can fa-xl"></i>
-
-                                    </button>
-
-                                </form>
-
-                            </li>
-
-                        </ul>
-
-                    @endif
-
-                </div>
+                    </div>
 
 
-            </div>
+                </li>
 
-        @endforeach
+            @endforeach
+
+
+        </ul>
+
+
 
     </div>
 

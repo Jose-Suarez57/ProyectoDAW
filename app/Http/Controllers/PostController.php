@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Commentary;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -76,7 +77,18 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $commentaries = Commentary::where('post_id', '=', $post->id)->paginate(4);
+
+        $usuarios = User::whereRaw('banned = 0')->get();
+
+        $ids = [];
+
+        foreach($usuarios as $usuario){
+
+            array_push($ids, $usuario->id);
+
+        }
+
+        $commentaries = Commentary::where('post_id', '=', $post->id)->whereIn('user_id', $ids)->paginate(4);
 
         return view('posts.show', compact('post', 'commentaries'));
     }
