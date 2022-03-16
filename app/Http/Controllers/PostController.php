@@ -62,7 +62,6 @@ class PostController extends Controller
         $post->text = $request->text;
         $post->tags = json_encode($request->tags);
         $post->image = Storage::url($miImagen);
-        $post->banned = 0;
 
         $post->save();
 
@@ -136,7 +135,6 @@ class PostController extends Controller
         $post->text = $request->text;
         $post->tags = json_encode($request->tags);
         $post->image = Storage::url($miImagen);
-        $post->banned = 0;
 
         $post->save();
 

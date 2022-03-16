@@ -33,7 +33,6 @@ return new class extends Migration
             $table->longText('text');
             $table->json('tags');
             $table->longText('image')->nullable();
-            $table->tinyInteger('banned')->default('0');
             $table->timestamps();
         });
     }

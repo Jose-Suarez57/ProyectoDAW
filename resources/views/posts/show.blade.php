@@ -78,7 +78,15 @@
 
         <br>
 
-        <button type="submit" class="btn btn-outline-primary">Publicar comentario</button>
+        @if(@Auth::user()->banned == 1)
+
+            <button disabled class="btn btn-outline-primary">Publicar comentario</button> Este usuario está baneado, ponte en contacto con el administrador para solucionar este problema
+
+        @else
+
+            <button type="submit" class="btn btn-outline-primary">Publicar comentario</button>
+
+        @endif
 
     </form>
 

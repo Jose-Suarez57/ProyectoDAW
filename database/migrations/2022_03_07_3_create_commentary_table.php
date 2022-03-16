@@ -31,7 +31,6 @@ return new class extends Migration
                 ->onUpdate('set null');
 
             $table->longText('text');
-            $table->tinyInteger('banned')->default('0');
             $table->timestamps();
         });
     }

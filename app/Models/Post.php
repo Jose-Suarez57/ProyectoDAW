@@ -18,7 +18,6 @@ class Post extends Model
         'text',
         'tags',
         'image',
-        'banned',
     ];
 
     public function category(){
@@ -27,5 +26,9 @@ class Post extends Model
 
     public function blogger(){
         return $this->belongsTo(User::class);
+    }
+
+    public function commentaries(){
+        return $this->hasMany(Commentary::class);
     }
 }
