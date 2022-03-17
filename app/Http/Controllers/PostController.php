@@ -25,7 +25,7 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
@@ -45,9 +45,8 @@ class PostController extends Controller
             'category_id' => 'numeric|min:1|max:7',
             'title' => 'required|min:3|max:100',
             'text' => 'required|min:3|max:2000',
-            'image' => 'image|2048',
             'tags' => 'required',
-            'image' => 'image|max:1000',
+            'image' => 'image|2048',
         ]);
 
         $miImagen = null;

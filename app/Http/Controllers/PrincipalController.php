@@ -16,32 +16,20 @@ class PrincipalController extends Controller
     public function index()
     {
         $usuarios = User::whereRaw('banned = 0')->get();
-
         $ids = [];
 
         foreach($usuarios as $usuario){
-
             array_push($ids, $usuario->id);
-
         }
 
         if(Auth::user() !== null && Auth::user()->age >= 18){
-
             $posts = Post::whereIn('blogger_id', $ids)->paginate(4);
-
         } else {
-
             $posts = Post::where('category_id', '!=', '3')->where('category_id', '!=', '5')->whereIn('blogger_id', $ids)->paginate(4);
-
         }
 
         $categories = Category::all();
-
         return view('index', compact('posts', 'categories'));
-
-
-
-
     }
 
     //Por post
@@ -59,7 +47,15 @@ class PrincipalController extends Controller
 
         }
 
-        $posts = Post::where('title',"like","%" .$request->title."%")->whereIn('blogger_id', $ids)->paginate(4);
+        if(Auth::user() !== null && Auth::user()->age >= 18){
+
+            $posts = Post::whereIn('blogger_id', $ids)->paginate(4);
+
+        } else {
+
+            $posts = Post::where('category_id', '!=', '3')->where('category_id', '!=', '5')->where('title',"like","%" .$request->title."%")->whereIn('blogger_id', $ids)->paginate(4);
+
+        }
 
         return view('index',compact("posts"));
     }

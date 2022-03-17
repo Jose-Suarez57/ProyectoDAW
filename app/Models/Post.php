@@ -27,8 +27,4 @@ class Post extends Model
     public function blogger(){
         return $this->belongsTo(User::class);
     }
-
-    public function commentaries(){
-        return $this->hasMany(Commentary::class);
-    }
 }

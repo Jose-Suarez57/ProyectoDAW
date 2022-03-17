@@ -108,6 +108,11 @@
                         <option value="Motor">Motor</option>
                         <option value="Deportes de contacto">Deportes de contacto</option>
                     </optgroup>
+                    <optgroup label="Videojuegos">
+                        <option value="Deportivos">Deportivos</option>
+                        <option value="Disparos">Disparos</option>
+                        <option value="Plataformas">Plataformas</option>
+                    </optgroup>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Editar</button>

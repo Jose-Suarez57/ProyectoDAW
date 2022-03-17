@@ -31,10 +31,13 @@
             <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
+
                     <label for="title" class="form-label">Título:</label>
                     <input type="text" class="form-control" name="title" id="title">
+
                 </div>
                 <div class="mb-3">
+
                     <label for="category_id" class="form-label">Categoría (ID):</label>
                     <select name="category_id" id="category_id">
                         <option value="0">-- Escoja su categoría --</option>
@@ -54,6 +57,7 @@
 
                         @endforeach
                     </select>
+
                 </div>
                 <div class="mb-3">
                     <label for="text" class="form-label">Contenido</label>
@@ -107,6 +111,11 @@
                             <option value="Futbol">Futbol</option>
                             <option value="Motor">Motor</option>
                             <option value="Deportes de contacto">Deportes de contacto</option>
+                        </optgroup>
+                        <optgroup label="Videojuegos">
+                            <option value="Deportivos">Deportivos</option>
+                            <option value="Disparos">Disparos</option>
+                            <option value="Plataformas">Plataformas</option>
                         </optgroup>
                     </select>
                 </div>
