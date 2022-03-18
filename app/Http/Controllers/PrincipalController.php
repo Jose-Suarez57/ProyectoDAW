@@ -49,7 +49,7 @@ class PrincipalController extends Controller
 
         if(Auth::user() !== null && Auth::user()->age >= 18){
 
-            $posts = Post::whereIn('blogger_id', $ids)->paginate(4);
+            $posts = Post::where('title',"like","%" .$request->title."%")->whereIn('blogger_id', $ids)->paginate(4);
 
         } else {
 

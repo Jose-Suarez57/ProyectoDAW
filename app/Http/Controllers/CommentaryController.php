@@ -47,7 +47,6 @@ class CommentaryController extends Controller
         $commentary->post_id = $request->post_id;
         $commentary->user_id = Auth::user()->id;
         $commentary->text = $request->text;
-        $commentary->banned = 0;
 
         $commentary->save();
 
