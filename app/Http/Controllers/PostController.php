@@ -46,7 +46,7 @@ class PostController extends Controller
             'title' => 'required|min:3|max:100',
             'text' => 'required|min:3|max:2000',
             'tags' => 'required',
-            'image' => 'image|2048',
+            'image' => 'image|max:2024',
         ]);
 
         $miImagen = null;
